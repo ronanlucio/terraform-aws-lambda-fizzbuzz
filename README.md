@@ -1,4 +1,4 @@
-# FizzBuzz Challenge
+# Terraform to Provision and Deploy AWS Lambda + API Gateway + Cognito
 
 ## Overview
 
