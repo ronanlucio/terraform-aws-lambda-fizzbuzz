@@ -1,0 +1,76 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>FizzBuzz Challenge</title>
+
+        <script type="text/javascript">
+            const login_url = 'https://conversely-awfully-stirring-bengal.auth.us-east-1.amazoncognito.com/login?client_id=5in0lvim9fpe5so8dpv33n6d82&response_type=token&scope=aws.cognito.signin.user.admin+email+openid+profile&redirect_uri=COGNITO_CALLBACK_URL';
+
+            if (window.location.search.length) {
+                var queryString = window.location.search;
+            } else if (window.location.href.indexOf('#') > 0) {
+                var queryString = window.location.href.split('#')[1];
+            }
+
+            var urlParams = new URLSearchParams(queryString);
+            if (urlParams.has('id_token')) {
+                var authorizationToken = urlParams.get('id_token')
+            } else {
+                window.location.replace(login_url)
+            }
+        </script>
+    </head>
+
+    <body>
+        <h1>FizzBuzz Challenge</h1>
+
+        <form>
+            <label for="msg">Type a number&nbsp;</label>
+            <input type="number" id="number" name="number" min="1" max="999999999">
+            <br><br>
+            <button id="submit" onclick="return fetchFizzBuzz()">Submit</button>
+        </form>
+
+        <!-- Result -->
+        <p>
+            <h3>Result: </h3>
+            <div id="result"></div>
+        </p>
+
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script type="text/javascript">
+            const cors_api_url = 'https://cors-anywhere-fmtcumeskq-uc.a.run.app/';
+            const url = cors_api_url + 'https://zopibuoj9b.execute-api.us-east-1.amazonaws.com/dev/fizzbuzz';
+
+            async function postData() {
+                const myHeaders = new Headers();
+                myHeaders.append("Content-Type", "application/json");
+                myHeaders.append("Authorization", "Bearer " + authorizationToken);
+
+                const data = JSON.stringify({
+                    "number": document.getElementById("number").value
+                });
+
+                const requestOptions = {
+                    method: 'POST',
+                    headers: myHeaders,
+                    body: data,
+                    redirect: 'follow',
+                    referrerPolicy: 'origin-when-cross-origin'
+                }
+
+                response = await fetch(url, requestOptions);
+                return response.json();
+            }
+
+            function fetchFizzBuzz() {
+                postData()
+                    .then(data => {
+                        document.getElementById("result").innerHTML = data;
+                    });
+
+                return false;
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,13 @@
+{
+    "name": "fizzbuzz",
+    "version": "1.0.0",
+    "description": "Serverless fizzbuzz implementation for AWS Lambda and API Gateway",
+    "author": "Ronan Lucio Pereira",
+    "scripts": {
+        "lint": "eslint --fix --color ."
+    },
+    "dependencies": {},
+    "devDependencies": {
+        "eslint": "^8.3.0"
+    }
+}

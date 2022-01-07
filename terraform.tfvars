@@ -1,0 +1,6 @@
+aws_region           = "us-east-1"
+api_name             = "fizzbuzz"
+site_domain          = "tiper.com.br"
+site_folder          = "front-end"
+cognito_callback_url = "https://fizzbuzz.tiper.com.br"
+cognito_logout_url   = "https://fizzbuzz.tiper.com.br/logout"
